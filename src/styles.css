@@ -476,6 +476,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   top: 0px;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
 .flex {
   display: flex;
 }
@@ -488,6 +496,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 100%;
 }
 
+.h-24 {
+  height: 6rem;
+}
+
 .w-screen {
   width: 100vw;
 }
@@ -496,12 +508,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 100%;
 }
 
+.items-start {
+  align-items: flex-start;
+}
+
 .items-center {
   align-items: center;
 }
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .overflow-hidden {
@@ -517,36 +537,44 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(107 114 128 / 0.5);
 }
 
-.bg-topo {
-  background-image: url('./src/img/topography.svg'),linear-gradient(#e6646485, #9198e585);
+.bg-section-6-portrait {
+  background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_xy_center,h_1000,w_530,x_2000,y_0/v1654516700/portfolio/sundowner.jpg');
 }
 
 .bg-section-2-portrait {
-  background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1000,w_530/v1654516705/portfolio/boats.jpg');
+  background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1000,w_530/v1654516705/portfolio/boats.jpg');
 }
 
 .bg-section-3-portrait {
-  background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1000,w_530/v1654516704/portfolio/bamaga.jpg');
+  background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1000,w_530/v1654516704/portfolio/bamaga.jpg');
 }
 
 .bg-section-4-portrait {
-  background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1000,w_530/v1654516702/portfolio/cape.jpg');
+  background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1000,w_530/v1654516702/portfolio/cape.jpg');
 }
 
 .bg-section-5-portrait {
-  background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1000,w_530/v1654516705/portfolio/bamaga2.jpg');
+  background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1000,w_530/v1654516705/portfolio/bamaga2.jpg');
 }
 
-.bg-section-6-portrait {
-  background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1000,w_530/v1654516700/portfolio/sundowner.jpg');
+.bg-section-1-portrait {
+  background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1000,w_530/v1654516713/portfolio/truck.jpg');
 }
 
 .bg-cover {
   background-size: cover;
 }
 
-.p-24 {
-  padding: 6rem;
+.p-12 {
+  padding: 3rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.pt-4 {
+  padding-top: 1rem;
 }
 
 .font-serif {
@@ -564,28 +592,36 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 768px) {
-  .md\:bg-topo {
-    background-image: url('./src/img/topography.svg'),linear-gradient(#e6646485, #9198e585);
-  }
-
-  .md\:bg-section-2-landscape {
-    background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_920,w_1920/v1654516705/portfolio/boats.jpg');
-  }
-
-  .md\:bg-section-3-landscape {
-    background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_920,w_1920/v1654516704/portfolio/bamaga.jpg');
-  }
-
-  .md\:bg-section-4-landscape {
-    background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_920,w_1920/v1654516702/portfolio/cape.jpg');
-  }
-
-  .md\:bg-section-5-landscape {
-    background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1080,w_1920/v1654516705/portfolio/bamaga2.jpg');
+  .md\:items-center {
+    align-items: center;
   }
 
   .md\:bg-section-6-landscape {
-    background-image: url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1080,w_1920/v1654516700/portfolio/sundowner.jpg');
+    background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1080,w_1920/v1654516700/portfolio/sundowner.jpg');
+  }
+
+  .md\:bg-section-2-landscape {
+    background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_920,w_1920/v1654516705/portfolio/boats.jpg');
+  }
+
+  .md\:bg-section-3-landscape {
+    background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_920,w_1920/v1654516704/portfolio/bamaga.jpg');
+  }
+
+  .md\:bg-section-4-landscape {
+    background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_920,w_1920/v1654516702/portfolio/cape.jpg');
+  }
+
+  .md\:bg-section-5-landscape {
+    background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_1080,w_1920/v1654516705/portfolio/bamaga2.jpg');
+  }
+
+  .md\:bg-section-1-landscape {
+    background-image: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%,rgba(0, 0, 0, 0.3) 100%), url('https://res.cloudinary.com/xxvii/image/upload/c_fill,g_auto,h_920,w_1920/v1654516713/portfolio/truck.jpg');
+  }
+
+  .md\:p-24 {
+    padding: 6rem;
   }
 
   .md\:text-9xl {
