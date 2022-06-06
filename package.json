@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  },
+  "dependencies": {
+    "gsap": "file:gsap-bonus.tgz"
+  },
+  "scripts": {
+    "css:watch": "npx tailwindcss -i ./src/input.css -o ./src/styles.css --watch",
+    "prebuild": "npx tailwindcss -i ./src/input.css -o ./build/styles.css --minify",
+    "build": "cp ./src/index.html ./build/index.html && cp .src/index.js ./build/index.js && cp -r media ./build/",
+    "postbuild": "cd build && git add . && git commit -m 'auto-build' && git push"
+  }
+}
