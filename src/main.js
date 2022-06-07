@@ -111,12 +111,18 @@ pageIndicators.forEach((indicator, index) => {
   });
 });
 
-gotoIndex(0, "bottom");
+gotoIndex(2, "bottom");
+
 let repos = null;
 let reposWrapper = document.querySelector(".github");
- fetch(
-  'https://api.github.com/users/samworth27'
-).then(async (response) => {
-  const data = await response.json();
-  repos = data
+
+fetch("https://api.github.com/users/samworth27/repos").then(
+  async (response) => {
+    const data = await response.json();
+    repos = data;
+  }
+);
+
+repos.map((i) => {
+  return { name: i.name };
 });

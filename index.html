@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.typekit.net/ncp2wos.css" />
+  </head>
+  <body
+    class="bg-gradient-to-b from-neutral-700 via-neutral-900 to-neutral-700"
+  >
+    <header class="h-screen flex justify-center items-center" id="header">
+      <div
+        class="px-10 pb-3 pt-6 font-bold text-4xl lg:text-9xl text-black bg-gradient-to-bl from-white to-neutral-400 shadow-md rounded-lg mix-blend-screen ring ring-neutral-500/50"
+      >
+        <span class="font-highway-sign font-normal" id="flicker"
+          >SAM MITCHELL</span
+        >
+      </div>
+    </header>
+    <nav
+      class="w-full flex fixed transition-all -top-10 h-10 z-[99] shadow-xl"
+      id="navbarTop"
+    >
+      <button
+        class="bg-black/25 text-white grow transition-all duration-700 text-xl"
+        id="tabLinkAbout"
+      >
+        About
+      </button>
+      <button
+        class="bg-black/25 text-white grow transition-all duration-700 text-xl"
+        id="tabLinkProjects"
+      >
+        Projects
+      </button>
+    </nav>
+    <main id="content" class="hidden h-screen relative transition-all"></main>
+    <nav
+      class="w-full flex fixed transition-all -bottom-10 h-10 z-[99]"
+      id="navbarBottom"
+    >
+      <button
+        class="bg-black/25 text-white grow transition-all duration-700 text-xl"
+        id="tabLinkContact"
+      >
+        Contact
+      </button>
+      <button
+        class="bg-black/25 text-white grow transition-all duration-700 text-xl"
+        id="tabLinkLinks"
+      >
+        Links
+      </button>
+    </nav>
+
+    <template id="aboutTemplate">
+      <div class="p-4 h-full overflow-auto flex flex-col md:justify-around">
+        <div
+          class="col-span-4 text-2xl md:text-5xl font-obvia justify-self-center w-full pb-0"
+        >
+          A Little About Me:
+        </div>
+
+        <div class="md:flex items-center">
+          <div class="md:shrink-0 relative">
+            <img
+              class="aspect-square h-24 w-full object-cover md:w-48 md:h-48 rounded-full shadow-md border border-white hover:h-full md:hover:h-48 hover:absolute md:hover:relative"
+              src="./media/portfolio/cbr-lakeside-downsized-2.jpg"
+              alt="Motorcycle at racetrack"
+            />
+          </div>
+          <div class="p-2 md:p-8">
+            <p class="mt-2 text-white">
+              I am an aspiring Software Developer with a solid foundation of
+              basic skills with Ruby, Rails, HTML, CSS, JavaScript and Python.
+            </p>
+            <p class="mt-2 text-white">
+              My interests lie within data, automation and machine learning.
+            </p>
+          </div>
+        </div>
+
+        <div class="md:flex items-center">
+          <div class="md:shrink-0 relative">
+            <img
+              class="aspect-square h-24 w-full object-cover md:w-48 md:h-48 rounded-full shadow-md border border-white hover:h-full md:hover:h-48 hover:absolute md:hover:relative"
+              src="./media/portfolio/drz-long-exposure.jpg"
+              alt="long exposure photo of motorcycle in front of stars"
+            />
+          </div>
+          <div class="p-2 md:p-8">
+            <p class="mt-2 text-slate-800">
+              My most recent employment was as a Junior Non-Commissioned Officer
+              in the Royal Australian Army. I was employed as an Drone Operator
+              and was endorsed as both a Mission Commander and Aircraft Captain
+              on the Shadow-200 platform.
+            </p>
+          </div>
+        </div>
+
+        <div class="md:flex items-center">
+          <div class="md:shrink-0 relative">
+            <img
+              class="aspect-square h-24 w-full object-cover md:w-48 md:h-48 rounded-full shadow-md border border-white hover:h-full md:hover:h-48 hover:absolute md:hover:relative"
+              src="./media/portfolio/climbing1.jpg"
+              alt="long exposure photo of motorcycle in front of stars"
+            />
+          </div>
+          <div class="p-2 md:p-8">
+            <p class="mt-2 text-slate-800">
+              I am seeking a challenging and rewarding environment in which to
+              build my skills as a Software Developer
+            </p>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="projectsTemplate">
+      <p>Projects</p>
+    </template>
+
+    <template id="contactTemplate">
+      <form id="contact-form" class="p-4" action="https://formspree.io/f/mdobbqqj" method="POST">
+        <div class="mb-5">
+          <label
+            for="name"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Full Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Full Name"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md invalid:text-red-500 invalid:border-red-500"
+          />
+        </div>
+        <div class="mb-5">
+          <label
+            for="email"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Email Address
+          </label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="example@domain.com"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md invalid:text-red-500 invalid:border-red-500"
+          />
+        </div>
+        <div class="mb-5">
+          <label
+            for="subject"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Subject
+          </label>
+          <input
+            type="text"
+            name="subject"
+            id="subject"
+            placeholder="Enter your subject"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5">
+          <label
+            for="message"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Message
+          </label>
+          <textarea
+            rows="4"
+            name="message"
+            id="message"
+            placeholder="Type your message"
+            class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          ></textarea>
+        </div>
+        <div>
+          <button id="contact-form-button" class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none">Submit</button>
+        </div>
+        <p id="contact-form-status"></p>
+      </form>
+    </template>
+
+    <template id="linksTemplate">
+      <p>Links</p>
+    </template>
+
+    <template id="tabTemplate">
+      <div
+        class="w-full h-screen bg-transparent transition-all duration-1000 absolute top-0 -left-full flex justify-center items-center"
+      >
+        <div
+          class="content-frame max-w-screen-xl w-full h-[90%] md:w-3/4 md:h-3/4 bg-gradient-to-b from-neutral-300 to-neutral-400 shadow-xl rounded-lg -mt-10 transition-all duration-100"
+        ></div>
+      </div>
+    </template>
+    <script type="module" src="./index.js"></script>
+    <script></script>
+  </body>
+</html>
