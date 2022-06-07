@@ -2,11 +2,12 @@ let sections = document.querySelectorAll("section");
 let outerWrappers = gsap.utils.toArray(".outer");
 let innerWrappers = gsap.utils.toArray(".inner");
 let backgrounds = gsap.utils.toArray(".background");
+let pageIndicators = gsap.utils.toArray(".page-indicator");
 
 let currentIndex = -1;
 
 gsap.set(outerWrappers, { yPercent: 100 });
-gsap.set(innerWrappers, { yPercent: -100 });
+// gsap.set(innerWrappers, { yPercent: -100 });
 
 let wrap = (index) =>
   ((index % sections.length) + sections.length) % sections.length;
@@ -27,16 +28,18 @@ let directionToMatrix = (direction) => {
 };
 
 function gotoIndex(index, direction) {
-  console.log(`index: ${index},\ncurrentIndex: ${currentIndex},\ndirection: ${direction}`);
   index = wrap(index);
   moving = true;
   movement = directionToMatrix(direction);
+  pageIndicators[index].classList.remove("outline");
+
   timeline = gsap.timeline({
     defaults: { duration: 1.25, ease: "power1.inOut" },
     onComplete: () => (moving = false),
   });
 
   if (currentIndex >= 0) {
+    pageIndicators[currentIndex].classList.add("outline");
     gsap.set(sections[currentIndex], { zIndex: 0 });
     timeline
       .to(backgrounds[currentIndex], {
@@ -52,18 +55,20 @@ function gotoIndex(index, direction) {
     .fromTo(
       [outerWrappers[index], innerWrappers[index]],
       {
+        xPercent: (i) => {
+          return i ? -100 * movement.x : 100 * movement.x;
+        },
         yPercent: (i) => {
-          console.log(i*-1, movement.y)
           return i ? -100 * movement.y : 100 * movement.y;
         },
       },
-      { yPercent: 0 },
+      { xPercent: 0, yPercent: 0 },
       0
     )
     .fromTo(
       backgrounds[index],
-      { yPercent: 15 * movement.y },
-      { yPercent: 0 },
+      { xPercent: 15 * movement.x, yPercent: 15 * movement.y },
+      { xPercent: 0, yPercent: 0 },
       0
     );
 
@@ -71,9 +76,9 @@ function gotoIndex(index, direction) {
 }
 
 Observer.create({
-  target: window, // can be any element (selector text is fine)
+  target: window,
   wheelSpeed: -1,
-  type: "wheel,touch, pointer", // comma-delimited list of what to listen for ("wheel,touch,scroll,pointer")
+  type: "wheel,touch, pointer",
   onDown: () => {
     if (!moving) {
       gotoIndex(currentIndex - 1, "top");
@@ -84,9 +89,34 @@ Observer.create({
       gotoIndex(currentIndex + 1, "bottom");
     }
   },
+  onLeft: () => {
+    if (!moving) {
+      gotoIndex(currentIndex + 1, "right");
+    }
+  },
+  onRight: () => {
+    if (!moving) {
+      gotoIndex(currentIndex - 1, "left");
+    }
+  },
   tolerance: 20,
-  preventDefault: true
+  preventDefault: true,
 });
 
+pageIndicators.forEach((indicator, index) => {
+  indicator.addEventListener("click", () => {
+    if (!moving && index !== currentIndex) {
+      gotoIndex(index, index > currentIndex ? "bottom" : "top");
+    }
+  });
+});
 
 gotoIndex(0, "bottom");
+let repos = null;
+let reposWrapper = document.querySelector(".github");
+ fetch(
+  'https://api.github.com/users/samworth27'
+).then(async (response) => {
+  const data = await response.json();
+  repos = data
+});
