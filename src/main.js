@@ -111,7 +111,7 @@ pageIndicators.forEach((indicator, index) => {
   });
 });
 
-gotoIndex(2, "bottom");
+gotoIndex(1, "bottom");
 
 let repos = null;
 let reposWrapper = document.querySelector(".github");
