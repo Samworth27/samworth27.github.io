@@ -9,6 +9,6 @@
     "css:watch": "npx tailwindcss -i ./src/input.css -o ./src/styles.css --watch",
     "prebuild": "npx tailwindcss -i ./src/input.css -o ./styles.css --minify",
     "build": "cp ./src/index.html ./index.html && cp ./src/main.js ./main.js",
-    "postbuild": "git add . && git commit -m 'auto-build' && git push github-pages"
+    "postbuild": "git add . && git commit -m 'auto-build' && git push"
   }
 }
