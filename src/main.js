@@ -76,8 +76,6 @@ function gotoIndex(index, direction) {
   currentIndex = index;
 }
 
-
-
 Observer.create({
   target: window,
   wheelSpeed: -1,
@@ -148,12 +146,7 @@ for (article of aboutArticles) {
   );
 }
 
-// Initialise Page
 
-gsap.set(outerWrappers, { yPercent: 100 });
-gsap.set(innerWrappers, { yPercent: -100 });
-aboutArticleGoto(aboutArticles[0])
-gotoIndex(1, "bottom");
 
 let repos = null;
 let reposWrapper = document.querySelector(".github");
@@ -168,3 +161,49 @@ fetch("https://api.github.com/users/samworth27/repos").then(
 // repos.map((i) => {
 //   return { name: i.name };
 // });
+
+// Contact Form
+
+var form = document.getElementById("contact-form");
+
+async function handleSubmit(event) {
+  event.preventDefault();
+  var status = document.getElementById("contact-form-status");
+  var data = new FormData(event.target);
+  fetch(event.target.action, {
+    method: form.method,
+    body: data,
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        status.innerHTML = "Thanks for your submission!";
+        form.reset();
+      } else {
+        response.json().then((data) => {
+          if (Object.hasOwn(data, "errors")) {
+            status.innerHTML = data["errors"]
+              .map((error) => error["message"])
+              .join(", ");
+          } else {
+            status.innerHTML = "Oops! There was a problem submitting your form";
+          }
+        });
+      }
+    })
+    .catch((error) => {
+      status.innerHTML = "Oops! There was a problem submitting your form";
+    });
+}
+
+form.addEventListener("submit", handleSubmit);
+
+// Initialise Page
+
+gsap.set(outerWrappers, { yPercent: 100 });
+gsap.set(innerWrappers, { yPercent: -100 });
+
+aboutArticleGoto(aboutArticles[0]);
+gotoIndex(1, "bottom");
