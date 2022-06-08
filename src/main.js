@@ -206,4 +206,4 @@ gsap.set(outerWrappers, { yPercent: 100 });
 gsap.set(innerWrappers, { yPercent: -100 });
 
 aboutArticleGoto(aboutArticles[0]);
-gotoIndex(1, "bottom");
+gotoIndex(0, "bottom");
