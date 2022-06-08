@@ -3,11 +3,10 @@ let outerWrappers = gsap.utils.toArray(".outer");
 let innerWrappers = gsap.utils.toArray(".inner");
 let backgrounds = gsap.utils.toArray(".background");
 let pageIndicators = gsap.utils.toArray(".page-indicator");
-
+let aboutArticles = gsap.utils.toArray(".about-article");
 let currentIndex = -1;
 
-gsap.set(outerWrappers, { yPercent: 100 });
-// gsap.set(innerWrappers, { yPercent: -100 });
+// Utility functions
 
 let wrap = (index) =>
   ((index % sections.length) + sections.length) % sections.length;
@@ -26,6 +25,8 @@ let directionToMatrix = (direction) => {
       return null;
   }
 };
+
+// Page Control
 
 function gotoIndex(index, direction) {
   index = wrap(index);
@@ -103,6 +104,7 @@ Observer.create({
   preventDefault: true,
 });
 
+// Page Indicators
 pageIndicators.forEach((indicator, index) => {
   indicator.addEventListener("click", () => {
     if (!moving && index !== currentIndex) {
@@ -111,7 +113,40 @@ pageIndicators.forEach((indicator, index) => {
   });
 });
 
-gotoIndex(1, "bottom");
+// About Articles
+let aboutArticleActive = null;
+function aboutArticleGoto(target) {
+  let targetImage = target.querySelector("img");
+  let targetText = target.querySelector(".about-article-text");
+  if (aboutArticleActive !== null) {
+    let previousImage = aboutArticleActive.querySelector("img");
+    let previousText = aboutArticleActive.querySelector(".about-article-text");
+    previousImage.classList.remove("w-12", "h-12");
+    previousImage.classList.add("w-32", "h-32");
+    previousText.classList.remove("block");
+    previousText.classList.add("hidden");
+  }
+  targetImage.classList.add("w-12", "h-12");
+  targetImage.classList.remove("w-32", "h-32");
+  targetText.classList.add("block");
+  targetText.classList.remove("hidden");
+  aboutArticleActive = target;
+}
+
+for (article of aboutArticles) {
+  article.addEventListener(
+    "click",
+    (event) => {
+      let target = event.currentTarget;
+      if (target !== aboutArticleActive) {
+        aboutArticleGoto(target);
+      }
+    },
+    true
+  );
+}
+
+
 
 let repos = null;
 let reposWrapper = document.querySelector(".github");
@@ -123,6 +158,52 @@ fetch("https://api.github.com/users/samworth27/repos").then(
   }
 );
 
-repos.map((i) => {
-  return { name: i.name };
-});
+// repos.map((i) => {
+//   return { name: i.name };
+// });
+
+// Contact Form
+
+var form = document.getElementById("contact-form");
+
+async function handleSubmit(event) {
+  event.preventDefault();
+  var status = document.getElementById("contact-form-status");
+  var data = new FormData(event.target);
+  fetch(event.target.action, {
+    method: form.method,
+    body: data,
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        status.innerHTML = "Thanks for your submission!";
+        form.reset();
+      } else {
+        response.json().then((data) => {
+          if (Object.hasOwn(data, "errors")) {
+            status.innerHTML = data["errors"]
+              .map((error) => error["message"])
+              .join(", ");
+          } else {
+            status.innerHTML = "Oops! There was a problem submitting your form";
+          }
+        });
+      }
+    })
+    .catch((error) => {
+      status.innerHTML = "Oops! There was a problem submitting your form";
+    });
+}
+
+form.addEventListener("submit", handleSubmit);
+
+// Initialise Page
+
+gsap.set(outerWrappers, { yPercent: 100 });
+gsap.set(innerWrappers, { yPercent: -100 });
+
+aboutArticleGoto(aboutArticles[0]);
+gotoIndex(0, "bottom");

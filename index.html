@@ -92,9 +92,9 @@
           >
             <!-- Section Content -->
             <div class="flex flex-col items-center gap-6">
-              <!-- Item 1 -->
+              <!-- Article 1 -->
               <article
-                class="flex flex-row items-center mx-4 md:backdrop-blur md:rounded-full mb-4 md:w-3/4"
+                class="about-article flex flex-row items-center mx-4 md:backdrop-blur-sm md:rounded-full mb-4 md:w-3/4"
               >
                 <div class="shrink-0">
                   <img
@@ -103,7 +103,7 @@
                     alt="Motorcycle at racetrack"
                   />
                 </div>
-                <div class="p-2 backdrop-blur-sm md:backdrop-blur-none rounded-sm">
+                <div class="about-article-text hidden md:block p-2 backdrop-blur-sm md:backdrop-blur-none rounded-sm">
                   <p class="mt-2 text-white">
                     I am an aspiring Software Developer with a solid foundation of
                     basic skills with Ruby, Rails, HTML, CSS, JavaScript and
@@ -114,18 +114,18 @@
                   </p>
                 </div>
               </article>
-              <!-- Item 2 -->
+              <!-- Article 2 -->
               <article
-                class="flex flex-row items-center mx-4 backdrop-blur rounded-full mb-4 md:w-3/4"
+                class="about-article flex flex-row items-center mx-4 md:backdrop-blur-sm md:rounded-full mb-4 md:w-3/4"
               >
                 <div class="shrink-0">
                   <img
-                    class="h-32 w-32 object-cover rounded-full shadow-md border border-white"
+                    class="h-12 w-12 md:h-32 md:w-32 object-cover object-center rounded-full shadow-md border border-white"
                     src="https://res.cloudinary.com/xxvii/image/upload/v1654571134/portfolio/drz3.jpg"
                     alt="Motorcycle at racetrack"
                   />
                 </div>
-                <div class="hidden md:block p-2">
+                <div class="about-article-text hidden md:block p-2 backdrop-blur-sm md:backdrop-blur-none rounded-sm">
                   <p class="mt-2 text-white">
                     My most recent employment was as a Junior Non-Commissioned
                     Officer in the Royal Australian Army.
@@ -137,18 +137,18 @@
                   </p>
                 </div>
               </article>
-              <!-- Item 3 -->
+              <!-- Article 3 -->
               <article
-                class="flex flex-row items-center mx-4 backdrop-blur rounded-full mb-4 md:w-3/4"
+                class="about-article flex flex-row items-center mx-4 md:backdrop-blur-sm md:rounded-full mb-4 md:w-3/4"
               >
                 <div class="shrink-0">
                   <img
-                    class="h-32 w-32 object-cover rounded-full shadow-md border border-white"
+                    class="h-12 w-12 md:h-32 md:w-32 object-cover object-center rounded-full shadow-md border border-white"
                     src="https://res.cloudinary.com/xxvii/image/upload/c_crop,g_custom,h_400,w_400,x_0,y_0/v1654570289/portfolio/mt-mee.jpg"
                     alt="Motorcycle at racetrack"
                   />
                 </div>
-                <div class="hidden md:block p-2">
+                <div class="about-article-text hidden md:block p-2 backdrop-blur-sm md:backdrop-blur-none rounded-sm">
                   <p class="mt-2 text-white">
                     I am seeking a challenging and rewarding environment in which
                     to build my skills as a Software Developer
@@ -166,7 +166,7 @@
       <div class="outer w-full h-full overflow-hidden">
         <div class="inner w-full h-full overflow-hidden">
           <div
-            class="background w-full h-full bg-section-3-portrait md:bg-section-3-landscape bg-cover bg-center flex justify-center items-center"
+            class="background w-full h-full bg-section-6-portrait md:bg-section-6-landscape bg-cover bg-center flex justify-center items-center"
           >
             <!-- Section Content -->
 
@@ -180,10 +180,75 @@
       <div class="outer w-full h-full overflow-hidden">
         <div class="inner w-full h-full overflow-hidden">
           <div
-            class="background w-full h-full bg-section-4-portrait md:bg-section-4-landscape bg-cover bg-center flex justify-center items-center"
+            class="background w-full h-full bg-section-5-portrait md:bg-section-5-landscape bg-cover bg-center flex justify-center items-center"
           >
             <!--  Section Content -->
-            <div class="github backdrop-blrounded-full mb-4"></div>
+            <form id="contact-form" class="p-4 backdrop-blur-sm" action="https://formspree.io/f/mdobbqqj" method="POST">
+              <div class="mb-5">
+                <label
+                  for="name"
+                  class="mb-3 block text-base font-medium text-white"
+                >
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="Full Name"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md invalid:text-red-500 invalid:border-red-500"
+                />
+              </div>
+              <div class="mb-5">
+                <label
+                  for="email"
+                  class="mb-3 block text-base font-medium text-white"
+                >
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="example@domain.com"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md invalid:text-red-500 invalid:border-red-500"
+                />
+              </div>
+              <div class="mb-5">
+                <label
+                  for="subject"
+                  class="mb-3 block text-base font-medium text-white"
+                >
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  name="subject"
+                  id="subject"
+                  placeholder="Enter your subject"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+              </div>
+              <div class="mb-5">
+                <label
+                  for="message"
+                  class="mb-3 block text-base font-medium text-white"
+                >
+                  Message
+                </label>
+                <textarea
+                  rows="4"
+                  name="message"
+                  id="message"
+                  placeholder="Type your message"
+                  class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                ></textarea>
+              </div>
+              <div>
+                <button id="contact-form-button" class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none">Submit</button>
+              </div>
+              <p id="contact-form-status"></p>
+            </form>
             <!-- End Section Content -->
           </div>
         </div>
@@ -194,7 +259,7 @@
       <div class="outer w-full h-full overflow-hidden">
         <div class="inner w-full h-full overflow-hidden">
           <div
-            class="background w-full h-full bg-section-5-portrait md:bg-section-5-landscape bg-cover bg-center flex justify-center items-center"
+            class="background w-full h-full bg-section-4-portrait md:bg-section-4-landscape bg-cover bg-center flex justify-center items-center"
           >
             <!-- Section Content -->
             <div class="backdrop-blrounded-full mb-4">
@@ -229,13 +294,12 @@
         </div>
       </div>
     </section>
-    <footer
+    <!-- <footer
       class="fixed bottom-0 flex items-center justify-between w-full z-10 h-24 p-4 text-white"
     >
       <div><a href="#">Github</a></div>
       <div><a href="#">LinkedIN</a></div>
       <div><a href="#">Contact Me</a></div>
-    </footer>
+    </footer> -->
   </body>
 </html>
-24
