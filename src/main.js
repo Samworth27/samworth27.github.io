@@ -5,6 +5,7 @@ let backgrounds = gsap.utils.toArray(".background");
 let pageIndicators = gsap.utils.toArray(".page-indicator");
 let aboutArticles = gsap.utils.toArray(".about-article");
 let currentIndex = -1;
+let interacting = false;
 
 // Utility functions
 
@@ -74,35 +75,48 @@ function gotoIndex(index, direction) {
     );
 
   currentIndex = index;
+      sessionStorage.setItem('index', currentIndex)
 }
 
-Observer.create({
+observer = Observer.create({
   target: window,
   wheelSpeed: -1,
   type: "wheel,touch, pointer",
   onDown: () => {
-    if (!moving) {
+    if (!moving && !interacting) {
       gotoIndex(currentIndex - 1, "top");
     }
   },
   onUp: () => {
-    if (!moving) {
+    if (!moving && !interacting) {
       gotoIndex(currentIndex + 1, "bottom");
     }
   },
   onLeft: () => {
-    if (!moving) {
+    if (!moving && !interacting) {
       gotoIndex(currentIndex + 1, "right");
     }
   },
   onRight: () => {
-    if (!moving) {
+    if (!moving && !interacting) {
       gotoIndex(currentIndex - 1, "left");
     }
   },
   tolerance: 20,
   preventDefault: true,
 });
+
+let inputs = document.querySelectorAll("input, textarea")
+for (input of inputs) {
+  input.addEventListener('mouseover', () => {
+    observer.disable();
+    interacting = true
+  })
+  input.addEventListener('mouseout', () => {
+    observer.enable();
+    interacting = false
+  })
+}
 
 // Page Indicators
 pageIndicators.forEach((indicator, index) => {
@@ -146,8 +160,6 @@ for (article of aboutArticles) {
   );
 }
 
-
-
 let repos = null;
 let reposWrapper = document.querySelector(".github");
 
@@ -162,43 +174,7 @@ fetch("https://api.github.com/users/samworth27/repos").then(
 //   return { name: i.name };
 // });
 
-// Contact Form
 
-var form = document.getElementById("contact-form");
-
-async function handleSubmit(event) {
-  event.preventDefault();
-  var status = document.getElementById("contact-form-status");
-  var data = new FormData(event.target);
-  fetch(event.target.action, {
-    method: form.method,
-    body: data,
-    headers: {
-      Accept: "application/json",
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        status.innerHTML = "Thanks for your submission!";
-        form.reset();
-      } else {
-        response.json().then((data) => {
-          if (Object.hasOwn(data, "errors")) {
-            status.innerHTML = data["errors"]
-              .map((error) => error["message"])
-              .join(", ");
-          } else {
-            status.innerHTML = "Oops! There was a problem submitting your form";
-          }
-        });
-      }
-    })
-    .catch((error) => {
-      status.innerHTML = "Oops! There was a problem submitting your form";
-    });
-}
-
-form.addEventListener("submit", handleSubmit);
 
 // Initialise Page
 
@@ -206,4 +182,8 @@ gsap.set(outerWrappers, { yPercent: 100 });
 gsap.set(innerWrappers, { yPercent: -100 });
 
 aboutArticleGoto(aboutArticles[0]);
-gotoIndex(0, "bottom");
+
+index = sessionStorage.getItem("index");
+index = index? index : 0
+
+gotoIndex(index, "bottom");

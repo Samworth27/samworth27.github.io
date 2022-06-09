@@ -3,7 +3,10 @@
     "tailwindcss": "^3.0.24"
   },
   "dependencies": {
-    "gsap": "file:gsap-bonus.tgz"
+    "gsap": "file:gsap-bonus.tgz",
+    "tailwindcss-autofill": "^1.0.2",
+    "tailwindcss-shadow-fill": "^1.0.1",
+    "tailwindcss-text-fill": "^0.2.0"
   },
   "scripts": {
     "css:watch": "npx tailwindcss -i ./src/input.css -o ./src/styles.css --watch",
