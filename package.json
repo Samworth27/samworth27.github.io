@@ -10,8 +10,8 @@
   "scripts": {
     "css:watch": "npx tailwindcss -i ./src/input.css -o ./src/styles.css --watch",
     "build": "npx tailwindcss -i ./src/input.css -o ./src/styles.css --minify",
-    "reset": "git reset --hard develop",
-    "predeploy": "cp ./src/* ./ -r && rm input.css && rm -rf ./.vscode && rm -rf ./node_modules && rm -rf ./src && rm package.json && rm package-lock.json && rm tailwind.config.js && rm .gitignore",
-    "deploy": "git add . && git commit -m 'auto-build' && git push --force"
+    "predeploy": "git commit . -m 'predeploy' && git checkout deploy && git reset --hard develop && cp ./src/* ./ -r && rm input.css && rm -rf ./.vscode && rm -rf ./node_modules && rm -rf ./src && rm package.json && rm package-lock.json && rm tailwind.config.js && rm .gitignore",
+    "deploy": "git add . && git commit -m 'auto-build' && git push --force",
+    "postdeploy": "git checkout develop"
   }
 }
